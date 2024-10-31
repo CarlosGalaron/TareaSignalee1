@@ -1,0 +1,55 @@
+Git(2005): control de verisones distribuído.
+
+- Ayuda: git --help/ git -h
+
+COMANDOS
+
+- Genérico
+LS listar
+CD + tab movernos enter directorios
+CD .. carpeta superior
+PWD nos da nuestra ruta actual
+MKDIR "nombreDir" crear carpeta
+code . abrir VS code (ej)
+touch(LINUX) crear fichero
+WINDOWS --> type nul > nombredetuarchivo. txt
+
+- Configurar git
+git config --global user.name "CarlosGalaron"
+git config --global user.email "Carlos.galaron@gmail.com
+
+- Crear fichero
+
+
+
+- Crear area de trabajo
+clone
+init
+
+- Trabajo de directorios:
+ADD añade archivos de contenido al index
+MV mueve o renombra un archivo/directorio/symlink
+RESTORE restaura los archivos de una rama main
+RM elimina archivos de la rama main y del index
+
+- Analisis de estado:
+BISECT busca el commit que introdujo un bug
+DIFF muestra los cambios entre commits y entre commit y rama principal
+GREP pinta líneas siguiendo un patron
+log muestra los commit logs
+SHOW muetra objetos
+STATUS muestra el estado de la rama principal
+
+- Trabajo con ramas:
+branch lista, crea o elimina ramas
+commit guarda cambios en el repositorio
+merge une dos o más historiales de desarrollo
+rebase aplica commits sobre base tip?
+reset reinicia el HEAD? a un estado específico
+switch cambia entre ramas
+tag crea, lista, elimina o verifica un objeto etiquetado firmado con GPG
+
+- Colaboración
+fetch descarga objetos y referencias (refs) de otro repositorio
+pull pide e integra contenido de otro repositorio o rama
+push actualiza refs y sus objetos asociados

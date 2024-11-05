@@ -24,8 +24,10 @@ WINDOWS --> type nul > nombredetuarchivo.txt
 
 
 - Crear area de trabajo
-clone (clona un repositorio)
-init: git init (dentro del folder del proyecto: crea la rama principal de git.
+CLONE
+|->git close ENLACE  (clona un repositorio)a carpeta con un clon del proyecto del repositorio remoto) 
+INIT
+|->git init (dentro del folder del proyecto: crea la rama principal de git)
 
 
 - Trabajo de directorios:
@@ -137,13 +139,54 @@ O pusheamos un repositorio ya existente
 -->git remote add origin ENLACE
 -->git Branch -M main
 -->git push -u origin main
+Puede que de problemas para hacer un push origin si estas por detrás en local, para solucionarlo hacer pull origin (-->git pull origin main
+) si no te deja puedes forzarlo (-->git pull origin main --allow-unrelated-histories)
 
 REBASE aplica commits sobre base tip?
 RESET reinicia el HEAD? a un estado específico
-SWITCH cambia entre ramas
-tag crea, lista, elimina o verifica un objeto etiquetado firmado con GPG
+
 
 - Colaboración y sincronización
-fetch descarga objetos y referencias (refs) de otro repositorio
-pull pide e integra contenido de otro repositorio o rama
-push actualiza refs y sus objetos asociados
+PULL
+|-> git pull (descarga los cambios desde el repositorio al local)
+
+PUSH
+|->git push (envía los cambios desde el local al repo de GitHub)
+
+FETCH descarga objetos y referencias (refs) de otro repositorio
+|-> git fetch (descarga el historial de cambios pero no los cambios)
+
+MERGE para reconciliar las ramas. mecanismo por defecto recomendado (rebase y fastforward para otros casos)
+|->git merge origin main (para mergear el repo remoto y la rama main en local)
+
+REBASE (trasladamos una rama al frente del flujo de trabajo)
+-->git rebase branchName
+-->git -i, --continue, --abort (para hacerlo por pasos)
+
+CHERRYPICK (extraer un commit concreto a otra rama)
+-->git cherry-pick idcommit
+(podemos hacer un git log para buscar ese idcommit)
+
+
+fork --> descargas un repositorio y lo haces "propio"(lo clonas), a partir de ahora los cambios que hagas puedes pushearlos a tu propio repositorio. 
+sync fork --> para incorporar tus cambios al repositorio original
+
+PULL REQUEST (PR) de HEAD a base repository.
+\->Hay que aceptarlo y mergearlo. se pueden intercambiar comentarios
+
+CONFLICTOS recomendable resolver desde Github. realizar cambios y marcar resuelto --> commit en la rama que proceda --> merge pull request
+
+GITKRAKEN como entorno gráfico
+GIT FLOW (convenio estandarizado de modo de trabajo con github)
+\->brew install git-flow
+-->git flow
+-->git flow init
+-->git flow release start (abrir rama)
+-->git flow release finish (cerrar rama)
+-->git flow feature(rama) start 2auth(fichero)
+
+GITHUB PAGES
+Para desplegar el repositorio y transformarlo en web si cumples ciertos requisitos. wonderfulamazing
+
+GITHUB ACTIONS
+Automatizaciones. Ej: que haga testing cuando se mergea a la rama dev etc etc etc

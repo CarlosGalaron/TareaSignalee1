@@ -1,4 +1,4 @@
-Git(2005): control de verisones distribuído.
+GIT(2005): control de verisones distribuído.
 
 - Ayuda: git --help/ git -h
 
@@ -11,45 +11,139 @@ CD .. carpeta superior
 PWD nos da nuestra ruta actual
 MKDIR "nombreDir" crear carpeta
 code . abrir VS code (ej)
-touch(LINUX) crear fichero
-WINDOWS --> type nul > nombredetuarchivo. txt
+
 
 - Configurar git
 git config --global user.name "CarlosGalaron"
 git config --global user.email "Carlos.galaron@gmail.com
+git congif --global alias.nombreAlias "instrucción a renombrar" (para dar alias a instrucciones)
 
 - Crear fichero
-
+touch(LINUX) crear fichero
+WINDOWS --> type nul > nombredetuarchivo.txt
 
 
 - Crear area de trabajo
-clone
-init
+clone (clona un repositorio)
+init: git init (dentro del folder del proyecto: crea la rama principal de git.
+
 
 - Trabajo de directorios:
-ADD añade archivos de contenido al index
+ADD añade archivos de contenido al index. git add ApuntesGitGithub.txt
 MV mueve o renombra un archivo/directorio/symlink
 RESTORE restaura los archivos de una rama main
 RM elimina archivos de la rama main y del index
 
+- Ignorar archivos:
+type nul > .gitignore (creamos .gitignore) 
+en .gitignore  -> **/.nombreArchivo. luego añades .gitignore y commiteas
+
+
 - Analisis de estado:
 BISECT busca el commit que introdujo un bug
 DIFF muestra los cambios entre commits y entre commit y rama principal
+--> git diff (nos da el archivo y los cambios en líneas de código)
 GREP pinta líneas siguiendo un patron
 log muestra los commit logs
 SHOW muetra objetos
 STATUS muestra el estado de la rama principal
 
+ADD añade archivos de contenido al index --> git add ApuntesGitGithub.txt
+--> git add . (añade todo)
+
+COMMIT guarda cambios en el repositorio.  --> git commit -m "feat subir apuntes"
+
+STATUS --> git status
+
+LOG --> git log nos da la info de los commits. si no esta comiteado nos dira que el archivo ha sido modificado
+--> git log --graph
+--> git log --graph pretty=oneline
+--> git log --graph decorate all --oneline
+
+CHECKOUT --> git checkout ID (para volver al que marque cada ID. donde marquemos es el HEAD) (le podemos dar un id del log)
+
+RESET --> git reset (para volver al ultimo estado apuntado por el HEAD)
+--> git reset --hard (hace desaparecer todo lo posterior al HEAD) (también puede resetear un reset y recuperar lo que has borrado)
+-->reglog (para ver los cambios, incluso archivos eliminados ya que los commit se quedan "a fuego")
+
+TAG suelen ser las versiones de la aplicación
+--> git tag dia_1
+--> git tag nos da el listado de tags del repositorio
+--> git checkout tags/dia_1 (cambia el HEAD a la versión con el tag dia_1)
+--git checkout main (volvemos al final)
+
+REVERT (se carga un commit y crea un commit más avanzado)
+
 - Trabajo con ramas:
-branch lista, crea o elimina ramas
-commit guarda cambios en el repositorio
-merge une dos o más historiales de desarrollo
-rebase aplica commits sobre base tip?
-reset reinicia el HEAD? a un estado específico
-switch cambia entre ramas
+BRANCH lista, crea o elimina ramas
+--> git branch -m main (para renombrar mi rama a main(rama principal))
+--> git Branch login (crea la nueva rama "login")
+-->git Branch -d login (para eliminar la rama login)
+
+SWITCH
+-->git switch login (para cambiar a la rama login)
+
+MERGE une dos o más historiales de desarrollo
+--> git switch login --> git add . --> git commit -m "parámetros de commit" --> git merge main (traemos los datos de main a login
+
+STASH (para hacer commit "temporal" que no afecta al árbol y solo está en mi local)
+--> git stash (si no haces stash de una versión no commitead no puedes cambiar de rama)--> git switch …
+--> git stash pop (para recuperar las versiones en stash)
+--> git stash drop (para eliminar las versiones en stash de la rama actual
+
+DIFF (II)
+--> git diff BranchName(nos dice en que diferimos con la rama "BranchName")
+--> git merge BranchName (mergea la rama "branchName" a la rama en la que estamos situados
+
+GITHUB funciona como servidor de repositorios, red social, y CV
+|-> La documentación esta toda en github
+
+- Crear repositorio
+|-> nombre de repositorio (recomendandado el rimero con tu nombre para que esté en la pagina de inicio)
+|-> publico o privado
+|->ReadMe (manual del repositorio)
+|-> License. Puede ser código abierto pero con licencia.
+
+-SSH (para la autenticación de git)
+*******Buscar y seguir mejor la documentación de GitHub para Windows, Moure usa Mac!!!!!!
+
+|-> en el directorio oculto .SSH del directorio raíz de nuestro disco
+|->ls -al ∼/.ssh (ñ sin la n, donde esta???) (para listar si hay claves)
+- Desde GIT en el 
+|-> ssh-keygen -t ed25519 -C "micorreo@correo.com"
+|-> nos pide un nombre para el fichero, recomendado id_rsa (genera id_rsa y id_rsa.pub
+|-> nos pide una contraseña (passphrase), se puede o no dejar vacío (enter para vacío)
+|-> eval "$(ssh-agent -s)" (llamamos al agente para evaluar si esta funcionando)
+|-> touch ∼/.ssh/config (creamos un archivo en la carpeta .ssh que se llame config) (sustituir por type nul > config para windows)
+|-> añadimos en el fichero config:
+Host ].github.com
+	AddKeysToAgent yes
+	UseKeyChain yes
+	IdentityFile ñ/.ssh/id_rsa
+
+--> Para mas info en GitHub (https://docs.github.com/es/authentication/)
+
+Creamos repositorio en GitHub
+Desde VS Code:
+-->git init
+-->git add README.md
+-->git commit -m "first commit"
+-->git Branch -M main
+-->git remote add origin git@github.com:CarlosGalaron/nombreRepo.git
+-->git push -u origin main
+
+O pusheamos un repositorio ya existente
+(git push origin)
+-->git remote add origin ENLACE
+-->git Branch -M main
+-->git push -u origin main
+
+REBASE aplica commits sobre base tip?
+RESET reinicia el HEAD? a un estado específico
+SWITCH cambia entre ramas
 tag crea, lista, elimina o verifica un objeto etiquetado firmado con GPG
 
-- Colaboración
+- Colaboración y sincronización
 fetch descarga objetos y referencias (refs) de otro repositorio
 pull pide e integra contenido de otro repositorio o rama
 push actualiza refs y sus objetos asociados
